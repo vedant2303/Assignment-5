@@ -5,15 +5,14 @@
 
 //importing necessary libraries
 #pragma once
-#include<string>
+#include <string>
 using namespace std;
 
 struct BSTNode
 {
 	char data;
-	BSTNode* left;
-	BSTNode* right;
-
+	BSTNode *left;
+	BSTNode *right;
 
 	//Default constructor for BSTNode
 	BSTNode()
@@ -32,17 +31,16 @@ struct BSTNode
 
 class BST
 {
-	BSTNode* root;
+	BSTNode *root;
 
 	//helper insert function.
-	void insert(char toStore, string code, BSTNode* subRoot)
+	void insert(char toStore, string code, BSTNode *subRoot)
 	{
-		if (code.length() == 1);
-
+		if (code.length() == 1)
+			;
 	}
 
 public:
-
 	BST()
 	{
 		root = new BSTNode();
@@ -60,7 +58,7 @@ public:
 		*/
 	void insert(char toStore, string code)
 	{
-		BSTNode* travPtr = root;
+		BSTNode *travPtr = root;
 		while (travPtr != nullptr && code.length() > 1)
 		{
 			if (code[0] == '.')
@@ -87,7 +85,7 @@ public:
 		*/
 	char search(string code)
 	{
-		BSTNode* travPtr = root;
+		BSTNode *travPtr = root;
 		while (code.length() > 0)
 		{
 			if (code[0] == '.')

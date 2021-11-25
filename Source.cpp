@@ -4,23 +4,23 @@
 // Purpose: To perform Morse code
 
 //Importing necessary libraries
-#include<iostream>
-#include<fstream>
-#include<vector>
-#include"BST.h"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include "BST.h"
 using namespace std;
 
 //Reads characters with theri codes from a file and stores them in a vector of type pair.
-void readFromFile(vector<pair<char,string>>&);
+void readFromFile(vector<pair<char, string>> &);
 
 //Encodes the messages, where each code of each letter is stored in a form of a string in a vector.
-void encode(vector<string>& encdedMessage,string message, vector<pair<char, string>>& codes);
+void encode(vector<string> &encdedMessage, string message, vector<pair<char, string>> &codes);
 
 //Constructs a tree from the given pairs of characters and their codes. The pairs must be in order.
-void makeTree(vector<pair<char, string>>&,BST& tree);
+void makeTree(vector<pair<char, string>> &, BST &tree);
 
 //Takes the message and decodes it back into the characters.
-void decode(vector<string>& encodedMessage, string& decodedMsgString, BST& tree);
+void decode(vector<string> &encodedMessage, string &decodedMsgString, BST &tree);
 
 /**
  * @info:
@@ -41,13 +41,13 @@ int main()
 {
 	string message, decodedMsgString;
 	vector<string> encodedMessage;
-	vector< pair<char,string> > codes;
+	vector<pair<char, string>> codes;
 	BST tree;
 	cout << "Enter a message\n";
 	getline(cin, message);
 	readFromFile(codes);
 	makeTree(codes, tree);
-	
+
 	encode(encodedMessage, message, codes);
 	decode(encodedMessage, decodedMsgString, tree);
 
@@ -59,15 +59,11 @@ int main()
 
 	cout << "\nDecoded Message\n";
 	cout << decodedMsgString;
-	
-
 
 	return 0;
 }
 
-
-
-void readFromFile(vector<pair<char,string>>& codes)
+void readFromFile(vector<pair<char, string>> &codes)
 {
 	char character;
 	string code;
@@ -84,20 +80,18 @@ void readFromFile(vector<pair<char,string>>& codes)
 	//input the character, it's morse code and store it in form of a pair in vector.
 	while (!fin.eof())
 	{
-		
+
 		fin >> character;
 		fin >> code;
-		pair<char,string> tempP;
+		pair<char, string> tempP;
 		tempP.first = character;
 		tempP.second = code;
 		codes.push_back(tempP);
 	}
-	
 }
 
-
 //Callss the inser function of tree for each pair.
-void makeTree(vector<pair<char, string>>& codes, BST& tree)
+void makeTree(vector<pair<char, string>> &codes, BST &tree)
 {
 	for (auto i : codes)
 	{
@@ -105,7 +99,7 @@ void makeTree(vector<pair<char, string>>& codes, BST& tree)
 	}
 }
 
-void encode(vector<string>& encodedMessage, string message, vector<pair<char, string>>& codes)
+void encode(vector<string> &encodedMessage, string message, vector<pair<char, string>> &codes)
 {
 	for (int i = 0; i < message.length(); i++)
 	{
@@ -123,10 +117,8 @@ void encode(vector<string>& encodedMessage, string message, vector<pair<char, st
 	}
 }
 
-
-
 //decodes the messages into a decoded string.
-void decode(vector<string>& encodedMessage, string& decodedMsgString, BST& tree)
+void decode(vector<string> &encodedMessage, string &decodedMsgString, BST &tree)
 {
 	char ch;
 	for (auto i : encodedMessage)
@@ -138,6 +130,5 @@ void decode(vector<string>& encodedMessage, string& decodedMsgString, BST& tree)
 			ch = tree.search(i);
 			decodedMsgString += ch;
 		}
-		
 	}
 }
